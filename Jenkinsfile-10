@@ -1,0 +1,44 @@
+node {
+     // Define a string variable
+    def message = "Hello, Jenkins!"
+    
+    stage('Welcome') {
+  
+      // Define an integer variable
+     def myInteger = 10
+      // Define a boolean variable
+     def myBoolean = true
+     // Define a list variable
+     def myList = ["apple", "banana", "orange"]
+      // Define a map variable
+     def myMap = [name: "John", age: 30, city: "New York"]
+      
+      
+    // Access and use the string variable
+        echo message;
+    
+    // Access and use the integer variable
+        echo "${myInteger}";
+        
+    
+    // Access and use the boolean variable
+        if (myBoolean) {
+            echo "The boolean variable is true."
+        } else {
+            echo "The boolean variable is false."
+        }
+     
+        
+    // Access and use the list variable
+        for (item in myList) {
+            echo item
+        }
+  
+        
+    // Access and use the map variable
+        echo "Name: ${myMap.name}"
+        echo "Age: ${myMap.age}"
+        echo "City: ${myMap.city}"
+       
+    }
+}

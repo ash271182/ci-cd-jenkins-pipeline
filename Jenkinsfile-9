@@ -1,0 +1,16 @@
+node {
+    def message = "Hello, Jenkins!"
+
+    stage('Build') {
+       echo "Building the App Code: ${message}"
+    }
+    
+    stage('Test') {
+       echo "Testing the App Code: ${message}"
+    }
+    
+    stage('Deploy') {
+       echo "Deploying the App Code: ${message}"
+    }
+    
+}

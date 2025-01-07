@@ -1,0 +1,47 @@
+pipeline {
+
+    agent any
+
+    stages {
+
+        stage('Build') {
+
+            steps {
+
+                echo 'mvn clean install'
+
+            }
+
+        }
+
+        stage('Testing') {
+
+            parallel {
+
+                stage('Unit Tests') {
+
+                    steps {
+
+                        echo 'mvn test -Dtest=UnitTests'
+
+                    }
+
+                }
+
+                stage('Integration Tests') {
+
+                    steps {
+
+                        echo 'mvn test -Dtest=IntegrationTests'
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+}

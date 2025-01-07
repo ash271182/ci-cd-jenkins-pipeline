@@ -10,7 +10,8 @@ pipeline {
             }
             steps {
                 bat 'echo "printenv"'
-                bat 'echo ${env.CC}   ${env.DEBUG_FLAGS}' 
+                bat 'echo "${env.CC}"   "${env.DEBUG_FLAGS}"'
+                 
             }
         }
     }

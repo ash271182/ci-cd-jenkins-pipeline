@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+
+  environment{
+      
+      JAVA_HOME="JAVA HOME PATH";
+      
+  }
+
+    stages {
+        stage('Hello') {
+            steps {
+                 script {
+                      message = "Hello World"
+                 }
+                echo 'Hello World'
+                echo message
+                echo JAVA_HOME
+                echo "$JAVA_HOME"
+            }
+        }
+    }
+}
+
+

@@ -28,6 +28,7 @@ pipeline {
                 // Run unit tests
                 echo 'Running tests...'
                 echo './gradlew test'
+                echo1 'generating error intenionally' 
             }
             post {
                 always {
@@ -35,6 +36,14 @@ pipeline {
                     echo "Archive test results"
                     echo 'junit **/build/test-results/**/*.xml'
                 }
+
+                   success {
+            echo 'Test completed successfully!'
+        }
+        failure {
+            echo 'Test failed!'
+        }
+
             }
         }
 

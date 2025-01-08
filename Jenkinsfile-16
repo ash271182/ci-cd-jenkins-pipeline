@@ -1,0 +1,74 @@
+pipeline {
+    agent any
+
+    environment {
+        // Define environment variables
+        JAVA_HOME = '/usr/lib/jvm/java-11-openjdk'
+        PATH = "${env.JAVA_HOME}/bin:${env.PATH}"
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Clone the source code repository
+                echo 'git branch: main, url: https://github.com/your-repo/your-project.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                // Build the application
+                echo 'Building the application...'
+                echo './gradlew build'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                // Run unit tests
+                echo 'Running tests...'
+                echo './gradlew test'
+            }
+            post {
+                always {
+                    // Archive test results
+                    echo 'junit **/build/test-results/**/*.xml'
+                }
+            }
+        }
+
+        stage('Package') {
+            steps {
+                // Package the application
+                echo 'Packaging the application...'
+                echo './gradlew assemble'
+                echo  'archiveArtifacts artifacts: **/build/libs/*.jar, fingerprint: true'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                // Deploy the application
+                echo 'Deploying the application...'
+                echo 'scp build/libs/your-app.jar user@server:/path/to/deployment'
+                echo 'ssh user@server "systemctl restart your-app.service"'
+            }
+        }
+    }
+
+    post {
+        always {
+            // Clean up workspace
+             echo "Clean up the workpace"
+             cleanWs()
+              }
+        success {
+            echo 'Pipeline completed successfully!'
+        }
+        failure {
+            echo 'Pipeline failed!'
+        }
+    }
+}
+
+

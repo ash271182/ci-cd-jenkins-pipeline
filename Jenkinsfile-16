@@ -32,6 +32,7 @@ pipeline {
             post {
                 always {
                     // Archive test results
+                    echo "Archive test results"
                     echo 'junit **/build/test-results/**/*.xml'
                 }
             }

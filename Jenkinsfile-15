@@ -4,9 +4,9 @@ pipeline {
     stage('Test') {
       steps {
          echo "Testing Tools installation" 
-          node --version
-          git --version
-          curl --version'''
+         sh node --version
+         sh git --version
+         sh curl --version
       }
     }
   }

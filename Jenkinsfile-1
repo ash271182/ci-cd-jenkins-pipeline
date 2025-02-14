@@ -3,6 +3,7 @@ pipeline {
         docker { image 'node:latest' 
                  label 'ubuntu'
         }
+}
     stages {
         stage('Build') {
             steps {
@@ -21,4 +22,4 @@ pipeline {
         }
     }
 }
-}
+
